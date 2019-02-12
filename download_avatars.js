@@ -1,8 +1,9 @@
 var request = require('request');
 var secrets = require('./secrets.js')
 var fs = require('fs');
-
-
+var cm1 = process.argv[2]
+var cm2 = process.argv[3]
+if(cm1 && cm2) {
 
 
 
@@ -22,7 +23,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 }// set vartaBLE TO AVURL AND FILEPATH
 var url1 = ''
 var filep = 'avatars/'
-getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors(cm1, cm2, function(err, result) {
   let avurl = result
       for(let i = 0; i < result.length; i++) {
         url1 += avurl[i].avatar_url
@@ -47,4 +48,7 @@ function downloadImageByURL(url, filePath) {
 
   .pipe(fs.createWriteStream(filePath));
 }
+}
+else
+console.log('ERROR!')
 //downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg")
